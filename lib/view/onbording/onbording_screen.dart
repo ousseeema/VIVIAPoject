@@ -1,3 +1,4 @@
+import 'package:eshop/controllers/homeController.dart';
 import 'package:eshop/utils/dimenssion.dart';
 import 'package:eshop/view/loginscreen/signin.dart';
 import 'package:eshop/view/loginscreen/signup.dart';
@@ -5,11 +6,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-class OnBordingScreenn extends StatelessWidget {
+class OnBordingScreenn extends StatefulWidget {
   const OnBordingScreenn({super.key});
 
   @override
+  State<OnBordingScreenn> createState() => _OnBordingScreennState();
+}
+
+class _OnBordingScreennState extends State<OnBordingScreenn> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    Get.find<HomeController>().getData();
+
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
+  
     return Container(
       //! responsive height 
      height: dimensions.height,

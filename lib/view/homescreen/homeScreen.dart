@@ -1,6 +1,8 @@
+import 'package:eshop/controllers/homeController.dart';
 import 'package:eshop/utils/dimenssion.dart';
 import 'package:eshop/utils/gridview.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:icons_flutter/icons_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,15 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List categoryList = [
-    "NEW IN",
-    "CLOTHING",
-    "NEW IN ",
-    "KING & QUEEN ",
-    "SHOES & BAGS",
-    "ACCESSORIES",
-  ];
-  List listproduct=[1,2,2,2,2,2];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Container(
                     // scanner qr icon
-                    height: 50,
-                    width: 50,
+                   height: dimensions.width20*3-5,
+                    width: dimensions.width20*3-5,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
@@ -48,44 +43,73 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 50,
+                   SizedBox(
+                    width: dimensions.width20*2,
                   ),
-                  Container(
-                    height: 50,
-                    width: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(dimensions.radius10),
+                  GestureDetector(
+                    onTap: () {
+                      //!
+                      
+                      Get.find<HomeController>().changeManWoman(false);
+
+
+
+
+
+                    },
+                    child: GetBuilder<HomeController>(
+                      builder: (controller1){
+                        return Container(
+                       height: dimensions.width20*3-5,
+                      width: dimensions.width30*3,
+                      decoration: BoxDecoration(
+                        color: controller1.iswoman? Colors.white: Colors.black,
+                        borderRadius: BorderRadius.circular(dimensions.radius10),
+                      ),
+                      child:  Center(
+                          child: Text(
+                        "MAN",
+                        style: TextStyle(color:controller1.iswoman? Colors.grey: Colors.white, fontSize: dimensions.font20-4),
+                         )),
+                        ); 
+                      })
+                  ),
+                   SizedBox(
+                    width: dimensions.width10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      //!
+                      print("qkjdq");
+                     
+                      Get.find<HomeController>().changeManWoman(true);
+                   
+                    },
+                    child: GetBuilder<HomeController>(
+                      builder: (controller) {
+                        return Container(
+                        height: dimensions.width20*3-5,
+                        width: dimensions.width30*3,
+                        decoration: BoxDecoration(
+                         color:controller.iswoman? Colors.black: Colors.white,
+                          borderRadius: BorderRadius.circular(dimensions.radius10),
+                        ),
+                        child:  Center(
+                            child: Text(
+                          "WOMAN",
+                          style: TextStyle(color: controller.iswoman ? Colors.white: Colors.grey, fontSize: 15),
+                        )),
+                      );
+                      },
+                      
                     ),
-                    child: const Center(
-                        child: Text(
-                      "MAN",
-                      style: TextStyle(color: Colors.white, fontSize: 15),
-                    )),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(dimensions.radius10),
-                    ),
-                    child: const Center(
-                        child: Text(
-                      "WOMAN",
-                      style: TextStyle(color: Colors.grey, fontSize: 15),
-                    )),
                   ),
                   const SizedBox(
                     width: 50,
                   ),
                   Container(
-                    height: 50,
-                    width: 50,
+                    height: dimensions.width20*3-5,
+                    width: dimensions.width20*3-5,
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
@@ -93,9 +117,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       borderRadius: BorderRadius.circular(dimensions.radius10),
                     ),
-                    child: const Icon(
+                    child:  Icon(
                       Icons.search_rounded,
-                      size: 40,
+                      size: dimensions.icon24*1.5,
                       color: Colors.black87,
                     ),
                   )
@@ -143,8 +167,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       top: dimensions.height20 * 8,
                       left: dimensions.width30,
                       child: Container(
-                        height: 50,
-                        width: 120,
+                        height: dimensions.height20*3-5,
+                        width: dimensions.width30*4,
                         decoration: BoxDecoration(
                           color: const Color.fromRGBO(246, 88, 36, 1),
                           borderRadius:
@@ -163,56 +187,73 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 5,
+             SizedBox(
+              height: dimensions.height10/2,
             ),
             // list view
             SizedBox(
-              height: 60,
+              height: dimensions.height20*3,
               width: dimensions.width,
-              child: ListView.builder(
+              child: GetBuilder<HomeController>(
+                builder: (controller2){
+                  return ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: categoryList.length,
+                  itemCount: controller2.categoryList.length,
                   itemBuilder: (_, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 55,
-                        width: 140,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 0.5,
+                      child: GestureDetector(
+                        onTap: (){
+                          Get.find<HomeController>().letindexChange(index);
+                        },
+                        child: Container(
+                          height: dimensions.height20*3,
+                          width: dimensions.width30*5,
+                          decoration: BoxDecoration(
+                            color : controller2.selectedIndex == index ? Colors.black: Colors.white,
+                            border: Border.all(
+                              color: Colors.grey,
+                              width: 0.5,
+                            ),
+                            borderRadius:
+                                BorderRadius.circular(dimensions.radius10),
                           ),
-                          borderRadius:
-                              BorderRadius.circular(dimensions.radius10),
+                          child: Center(
+                            child: Text(controller2.categoryList[index], 
+                            style:  TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: controller2.selectedIndex == index ? Colors.white: Colors.black,
+
+                              
+                              ),)),
                         ),
-                        child: Center(
-                          child: Text(categoryList[index], style: const TextStyle(fontWeight: FontWeight.bold),)),
                       ),
                     );
-                  }),
+                  });
+                })
             ), 
-            const SizedBox(
-              height: 20,
+             SizedBox(
+              height: dimensions.height20,
             ),
 
             SizedBox(
-              height: 330,
+              height: dimensions.height20*16.5,
               width: dimensions.width,
-              child: GridView.builder(
+              child: GetBuilder<HomeController>(builder: (controller3) {
+                return GridView.builder(
               
-                itemCount: listproduct.length,
-                gridDelegate:const  SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisExtent: 300,
+                itemCount: controller3.listproduct.length,
+                gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisExtent: dimensions.height20*15,
                   crossAxisCount: 2),
                 
                  itemBuilder: (_, index){
                    return Padding(
                      padding: const EdgeInsets.all(8.0),
-                     child: gridView(price: 140.05, description: "jbsdfdfsdfkjsdqdqsjkds"),
+                     child: gridView(price: controller3.listproduct[index].price, description: controller3.listproduct[index].title, image: controller3.listproduct[index].image),
                    );
-                 }),
+                 });
+              },)
             )
 
            
