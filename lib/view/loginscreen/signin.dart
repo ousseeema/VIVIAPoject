@@ -35,7 +35,7 @@ class _signInState extends State<signIn> {
                 //! sign up text
                 GestureDetector(
                   onTap: (){
-                   Get.to(()=>const signUp());
+                   Get.off(()=>const signUp(),transition:Transition.fadeIn);
 
                   },
                   
@@ -98,7 +98,7 @@ class _signInState extends State<signIn> {
 
                  if(test){
                    Get.snackbar("Done", "WELCOME ", backgroundColor: Colors.green) ;
-                   Get.to(()=> const HomeScreen());
+                   Get.offAll(()=> const HomeScreen(),transition:Transition.fadeIn);
                 }
                 else{
                     Get.snackbar("error", "error in information ", backgroundColor: Colors.red) ;

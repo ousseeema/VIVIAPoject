@@ -1,4 +1,5 @@
 import 'package:eshop/dependancy/dependence.dart';
+import 'package:eshop/view/homescreen/homeScreen.dart';
 import 'package:eshop/view/loginscreen/signin.dart';
 import 'package:eshop/view/loginscreen/signup.dart';
 import 'package:eshop/view/onbording/onbording_screen.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(
      
      
-      home: OnBordingScreenn(),
+      home: HomeScreen(),
     );
   }
 }

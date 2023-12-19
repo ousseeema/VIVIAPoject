@@ -50,7 +50,7 @@ class OnBordingScreenn extends StatelessWidget {
           
             child: GestureDetector(
               onTap: () {
-                Get.to(()=> const signUp());
+                Get.to(()=> const signUp(),transition:Transition.fadeIn);
               
               },
               child: Container(
@@ -82,7 +82,7 @@ class OnBordingScreenn extends StatelessWidget {
         
             child: GestureDetector(
               onTap: () {
-                Get.to(()=> const  signIn());
+                Get.to(()=> const  signIn(),transition:Transition.fadeIn);
               },
               child: Container(
                 height:dimensions.height20*2+12,
