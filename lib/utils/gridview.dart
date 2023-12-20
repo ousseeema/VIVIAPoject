@@ -34,14 +34,15 @@ class _gridViewState extends State<gridView>
                   Positioned(
                       top: dimensions.height20 *11.5,
                       left: dimensions.width20,
-                      child: SizedBox(
-                        width:dimensions.radius30*5 +7,
-                        height:dimensions.height20+8,
+                      child: Container(
+                        width:dimensions.width30*5.5,
+                          height:dimensions.height20*1.5,
+                         
                         child: Text(
                          widget.product["title"],
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              color: Colors.blue,
+                              color: Colors.black,
                               //fontWeight: FontWeight.bold,
                               fontSize: dimensions.font20),
                         ),
@@ -52,7 +53,7 @@ class _gridViewState extends State<gridView>
                       child: Text(
                         "\$ ${widget.product["price"]}",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             
                             fontSize: dimensions.font20),
                       )),

@@ -3,6 +3,7 @@ import 'package:eshop/controllers/signupController.dart';
 import 'package:eshop/utils/dimenssion.dart';
 import 'package:eshop/view/homescreen/homeScreen.dart';
 import 'package:eshop/view/loginscreen/signin.dart';
+import 'package:eshop/view/mainScreen/mainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_flutter/icons_flutter.dart';
@@ -114,8 +115,8 @@ class _signUpState extends State<signUp> {
               onTap: (){
                 bool test = Get.find<signupController>().validate_Email_Pass_Name(emailcontroller.text, passwordcontroller.text, namecontroller.text);
                       if(test){
-                         Get.snackbar("done", "welcome  ", backgroundColor: Colors.green) ;
-                    Get.offAll(()=> const HomeScreen(),transition:Transition.fadeIn);
+                         Get.snackbar("done", "welcome  ", backgroundColor:const Color.fromARGB(255, 139, 83, 83)) ;
+                    Get.offAll(()=> const mainScreen(),transition:Transition.fadeIn);
                  
                 }
                 else{

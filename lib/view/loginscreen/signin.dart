@@ -3,6 +3,7 @@ import 'package:eshop/controllers/loginController.dart';
 import 'package:eshop/utils/dimenssion.dart';
 import 'package:eshop/view/homescreen/homeScreen.dart';
 import 'package:eshop/view/loginscreen/signup.dart';
+import 'package:eshop/view/mainScreen/mainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_flutter/icons_flutter.dart';
@@ -97,8 +98,8 @@ class _signInState extends State<signIn> {
                 bool test = Get.find<loginController>().verification(emailcontroller.text, passwordcontoller.text);
 
                  if(test){
-                   Get.snackbar("Done", "WELCOME ", backgroundColor: Colors.green) ;
-                   Get.offAll(()=> const HomeScreen(),transition:Transition.fadeIn);
+                   Get.snackbar("Done", "WELCOME ", backgroundColor:const Color.fromARGB(255, 139, 83, 83) ) ;
+                   Get.offAll(()=> const mainScreen(),transition:Transition.fadeIn);
                 }
                 else{
                     Get.snackbar("error", "error in information ", backgroundColor: Colors.red) ;

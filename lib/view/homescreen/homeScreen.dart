@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     GestureDetector(
                       onTap: () {
                         //!
-                        print("qkjdq");
+                       
 
                         Get.find<HomeController>().changeManWoman(true);
                       },

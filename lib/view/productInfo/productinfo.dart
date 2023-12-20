@@ -4,6 +4,7 @@ import 'package:eshop/utils/dimenssion.dart';
 import 'package:eshop/utils/dots_indicators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icons_flutter/icons_flutter.dart';
 
 class ProductInfo extends StatefulWidget {
   const ProductInfo({super.key});
@@ -38,7 +39,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     child: Container(
                       height: dimensions.height20 * 3,
                       decoration: BoxDecoration(
-                          color: const  Color.fromRGBO(20, 18, 18, 0.965),
+                          color: const Color.fromRGBO(20, 18, 18, 0.965),
                           borderRadius:
                               BorderRadius.circular(dimensions.radius10)),
                       //! free shipping section over the product image
@@ -116,7 +117,7 @@ class _ProductInfoState extends State<ProductInfo> {
 
             // the information of the product
             SizedBox(
-              height: dimensions.height20 ,
+              height: dimensions.height10,
             ),
             //! price of the product section
             Padding(
@@ -136,10 +137,11 @@ class _ProductInfoState extends State<ProductInfo> {
               padding: EdgeInsets.only(left: dimensions.LRpadmarg20),
               child: Text(
                 " ${productinfo[0]["title"]}",
-                maxLines: 3,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: dimensions.font20),
+                    fontWeight: FontWeight.bold,
+                    fontSize: dimensions.font20 - 3),
               ),
             ),
 
@@ -175,47 +177,173 @@ class _ProductInfoState extends State<ProductInfo> {
               ),
             ),
 
+            // this section is for the type of product
             Padding(
-              padding:  EdgeInsets.all(dimensions.TBpadmarg10),
+              padding: EdgeInsets.only(
+                  left: dimensions.LRpadmarg20,
+                  top: dimensions.TBpadmarg20,
+                  bottom: dimensions.TBpadmarg20),
               child: SizedBox(
-                height:  dimensions.height20*2.5 ,
+                height: dimensions.height20 * 2.5,
                 width: dimensions.width,
                 child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: Get.find<productinfoController>().choixlist.length ,
-                  itemBuilder:(_, index){
-                    return Padding(
-                      padding:  EdgeInsets.only(right: dimensions.LRpadmarg20),
-                      child: Container(
-                        height: dimensions.height20*2,
-                        width:  Get.find<productinfoController>().widhList[index],
-                        decoration: BoxDecoration( 
-                          color: Get.find<productinfoController>().colorlist[index],
-                          borderRadius: BorderRadius.circular(dimensions.radius10),
-                        ),
-                        child: Center(
-                          child: Text(
-                             Get.find<productinfoController>().choixlist[index],
-                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: dimensions.font20 - 4
+                    scrollDirection: Axis.horizontal,
+                    itemCount:
+                        Get.find<productinfoController>().choixlist.length,
+                    itemBuilder: (_, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(right: dimensions.LRpadmarg10),
+                        child: Container(
+                          height: dimensions.height20 * 2,
+                          width:
+                              Get.find<productinfoController>().widhList[index],
+                          decoration: BoxDecoration(
+                            color: Get.find<productinfoController>()
+                                .colorlist[index],
+                            borderRadius:
+                                BorderRadius.circular(dimensions.radius10),
+                          ),
+                          child: Center(
+                            child: Text(
+                              Get.find<productinfoController>()
+                                  .choixlist[index],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: dimensions.font20 - 4),
                             ),
                           ),
                         ),
-                                    
-                        
-                      ),
-                    );
-                  } ),
+                      );
+                    }),
               ),
-            )
+            ),
 
+            Padding(
+              padding: EdgeInsets.only(
+                  left: dimensions.LRpadmarg20, right: dimensions.LRpadmarg20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "DETAILS",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: dimensions.font20 - 6,
+                    ),
+                  ),
+                  // ! changing the state of the arrow icon in each tap
+                  GestureDetector(onTap: () {
+                    Get.find<productinfoController>().arrowchange();
+                  }, child:
+                      GetBuilder<productinfoController>(builder: (controller) {
+                    return controller.arrow
+                        ? Icon(
+                            Icons.arrow_circle_up,
+                            size: dimensions.icon24,
+                          )
+                        : Icon(
+                            Icons.arrow_circle_down,
+                            size: dimensions.icon24,
+                          );
+                  }))
+                ],
+              ),
+            ),
 
+            // text of the details changes every time we hit the arrow up and down
 
+            Padding(
+              padding: EdgeInsets.only(
+                  left: dimensions.LRpadmarg20,
+                  right: dimensions.LRpadmarg20 / 2),
+              child: GetBuilder<productinfoController>(builder: (controller) {
+                return controller.arrow
+                    ? SizedBox(
+                        height: dimensions.height20 * 5,
+                        width: dimensions.width,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Text(
+                                "${productinfo[0]["description"]}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: dimensions.font20 - 6,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    : SizedBox(
+                        height: dimensions.height20 * 5,
+                        width: dimensions.width,
+                        child: Text(
+                          productinfo[0]["description"],
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: dimensions.font20 - 6,
+                          ),
+                        ),
+                      );
+              }),
+            ),
 
-
-
+            Padding(
+              padding: EdgeInsets.all(dimensions.LRpadmarg20),
+              child: GestureDetector(
+                onTap: () {
+                  bool productexiste = Get.find<productinfoController>()
+                      .addProductToCart(productinfo[0]);
+                  if (productexiste) {
+                    Get.snackbar(
+                        "Alert", "Product already exist check your cart",
+                        backgroundColor:
+                            const Color.fromRGBO(175, 166, 219, 100),
+                            colorText: Colors.white,
+                            icon:  Icon(Icons.error,color: Colors.red[300],)
+                        );
+                  } else {
+                    Get.snackbar("Success", "Product added to cart",
+                        backgroundColor:
+                            const Color.fromRGBO(255, 139, 83, 100),
+                            colorText: Colors.white,
+                            icon: const Icon(Icons.check,color: Colors.white,)
+                            );
+                  }
+                },
+                child: Container(
+                  height: dimensions.height20 * 3,
+                  width: dimensions.width30 * 13,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(dimensions.radius10)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        FontAwesome.shopping_bag,
+                        color: Colors.white,
+                        size: dimensions.font20 - 3,
+                      ),
+                      SizedBox(
+                        width: dimensions.width10,
+                      ),
+                      Text(
+                        "ADD TO SHOPING BAG",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: dimensions.font20 - 4),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

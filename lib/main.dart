@@ -2,7 +2,9 @@ import 'package:eshop/dependancy/dependence.dart';
 import 'package:eshop/view/homescreen/homeScreen.dart';
 import 'package:eshop/view/loginscreen/signin.dart';
 import 'package:eshop/view/loginscreen/signup.dart';
+import 'package:eshop/view/mainScreen/mainScreen.dart';
 import 'package:eshop/view/onbording/onbording_screen.dart';
+import 'package:eshop/view/order%20details/orderDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(
      debugShowCheckedModeBanner: false,
      
-      home: OnBordingScreenn(),
+      home:OnBordingScreenn(),
     );
   }
 }

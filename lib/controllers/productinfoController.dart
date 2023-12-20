@@ -9,6 +9,7 @@ class productinfoController extends GetxController{
 
  List<Map<String, dynamic>> productinfo =[];
  List <Map<String, dynamic>> cartlist=[];
+ bool arrow= false;
   List<String> choixlist=[
     "NEW",
     "BOSSXFERDDIE MERCURY",
@@ -38,11 +39,25 @@ class productinfoController extends GetxController{
     productinfo.add(product);
   }
 
-  void addProductToCart(Map<String, dynamic> product){
+  bool addProductToCart(Map<String, dynamic> product){
+   bool test = cartlist.contains(product);
+   if(test){
+    return true ;
+   }
+   else{
     cartlist.add(product);
     update();
+    return false;
+   }
+   
   }
   
+
+  void arrowchange(){
+   
+    arrow = !arrow;
+    update();
+  }
 
 
 
