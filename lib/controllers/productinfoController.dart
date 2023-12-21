@@ -37,6 +37,7 @@ class productinfoController extends GetxController{
   void add_Product_Info(product){
     productinfo =[];
     productinfo.add(product);
+    update();
   }
 
   bool addProductToCart(Map<String, dynamic> product){

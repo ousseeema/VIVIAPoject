@@ -1,30 +1,31 @@
-import 'package:checkbox_list/checkbox_list.dart';
 import 'package:eshop/controllers/carteController.dart';
 import 'package:eshop/utils/dimenssion.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class singlecontainer extends StatefulWidget {
-  Map<String, dynamic> product;
-  singlecontainer({super.key, required this.product});
+class singlecontainer2 extends StatefulWidget {
+  Map<String, dynamic> product ;
+   singlecontainer2({super.key, required this.product});
 
   @override
-  State<singlecontainer> createState() => _singlecontainerState();
+  State<singlecontainer2> createState() => _singlecontainer2State();
 }
 
-class _singlecontainerState extends State<singlecontainer> {
+class _singlecontainer2State extends State<singlecontainer2> {
   Map<String, dynamic> product={};
 
   @override
   void initState() {
     super.initState();
     product = widget.product;
-    product['quantity'] = 1;
+   
   }
-  bool CheckboxValue =false;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<cartController>(
+    return 
+    GetBuilder<cartController>(
       builder: (controler) {
         return 
         Container(
@@ -35,22 +36,7 @@ class _singlecontainerState extends State<singlecontainer> {
           child: Row(
             children: [
           
-              CustomCheckBox(
-          
-               borderRadius: BorderRadius.circular(10),
-               checkIconColor: Colors.white,
-                selectedBoxColor: Colors.black,
-                 iconSize: 1,
-                 checkBoxWidth: 30,
-                  checkBoxHeight:30,
-                  borderColor: Colors.black,
-                  onChanged: (value) {
-                    CheckboxValue =value;
-
-                    controler.verificationAndAdd(value,product);
-                    
-                  },
-                   multipleChoice: false,),
+            
             
               SizedBox(
                 width: dimensions.width10,

@@ -4,6 +4,7 @@ import 'package:eshop/view/homescreen/homeScreen.dart';
 import 'package:eshop/view/netification%20screen/netify.dart';
 import 'package:eshop/view/order%20details/orderDetails.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -19,7 +20,7 @@ class _mainScreenState extends State<mainScreen> {
   List<Widget> body= [
      HomeScreen(),
       netify(),
-     orderDetails(),
+      orderDetails(),
     userDetails()
   ];
   @override
@@ -40,10 +41,10 @@ class _mainScreenState extends State<mainScreen> {
 
       selectedIndex :_selectedIndex,
       
-      tabs: const [
+      tabs:const   [
         GButton(style:GnavStyle.oldSchool, icon: LineIcons.home,gap: 1, text: " Home",),
         GButton(style:GnavStyle.oldSchool,icon: LineIcons.envelope,gap: 1, text: " Netify"),
-        GButton(style:GnavStyle.oldSchool,icon: LineIcons.gift,gap: 1, text: " Order"),
+        GButton(style:GnavStyle.oldSchool,icon: LineIcons.gift,gap: 1, text: " Order",),
         GButton(style:GnavStyle.oldSchool,icon: LineIcons.user,gap: 1, text: " User"),
        
 

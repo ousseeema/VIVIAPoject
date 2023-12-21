@@ -1,3 +1,4 @@
+import 'package:eshop/controllers/carteController.dart';
 import 'package:eshop/controllers/homeController.dart';
 import 'package:eshop/controllers/loginController.dart';
 import 'package:eshop/controllers/productinfoController.dart';
@@ -13,8 +14,8 @@ class dependency{
     Get.lazyPut(() => loginController());
     Get.lazyPut(() => signupController());
     Get.lazyPut(() => HomeController());
-    Get.lazyPut(() => productinfoController());
-
+    Get.lazyPut(() => productinfoController(),fenix: true);
+    Get.lazyPut(() => cartController(),fenix: true);
 
     // repo
     Get.lazyPut(()=>HomeRepo());
